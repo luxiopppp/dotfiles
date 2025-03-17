@@ -19,4 +19,7 @@ require("lazy").setup({ { import = "luxiopppp.plugins" }, { import = "luxiopppp.
   change_detection = {
     notify = false,
   },
+  -- rocks = {
+  --   hererocks = true,
+  -- },
 })
