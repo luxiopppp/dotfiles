@@ -8,6 +8,9 @@ import = [
 #  "/usr/lib/node_modules/alacritty-themes/themes/3024.dark.toml"
 #]
 
+# [terminal.shell]
+# program = "tmux"
+
 [window]
 decorations = "Full"
 decorations_theme_variant = "Dark"
@@ -17,7 +20,7 @@ decorations_theme_variant = "Dark"
   y = 10
 
 [font]
-size = 9
+size = 13
 
 [font.bold]
 family = "CaskaydiaCove Nerd Font"
