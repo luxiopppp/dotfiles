@@ -3,7 +3,9 @@ alias ll='eza -l'
 alias la='eza -a'
 
 alias cl='clear'
+alias c='clear'
 alias cd..='cd ..'
+alias z..='z ..'
 
 # alias .bash='. ~/.bashrc'
 alias .fish='. ~/.config/fish/config.fish'
