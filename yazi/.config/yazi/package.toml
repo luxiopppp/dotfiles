@@ -1,0 +1,12 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "bennyyip/gruvbox-dark"
+rev = "b4cc9f2"
+hash = "f44c42bcbed3c8564100e45e2fe3649a"
+
+[[flavor.deps]]
+use = "muratoffalex/kanagawa-lotus"
+rev = "d84d61a"
+hash = "eef7cfa41fe51c19628d28cf453e967d"
