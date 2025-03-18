@@ -30,7 +30,7 @@ alias gca!='git commit -v -a --amend'
 alias gcm='git commit -m'
 
 alias gch='git checkout'
-alias gcb='git checkout branch'
+alias gcb='git checkout -b'
 
 alias gsta='git stash'
 alias gsts='git stash show --text'
