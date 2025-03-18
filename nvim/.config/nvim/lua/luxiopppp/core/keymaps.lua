@@ -24,3 +24,5 @@ keymap.set("n", "K", ":m .-2<CR>==", { desc= "Move line up" })
 keymap.set("n", "J", ":m .+1<CR>==", { desc= "Move line down" })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc= "Move lines up" })
 keymap.set("v", "J", ":m '<+1<CR>gv=gv", { desc= "Move lines down" })
+
+keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
