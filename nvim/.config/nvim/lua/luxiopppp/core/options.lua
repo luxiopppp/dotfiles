@@ -28,3 +28,8 @@ opt.clipboard:append("unnamedplus")
 
 opt.splitright = true
 opt.splitbelow = true
+
+vim.cmd([[
+  iabbrev n~ ñ
+  iabbrev N~ Ñ
+]])
