@@ -5,5 +5,15 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 500
   end,
-  opts = {},
+  opts = function()
+    local wk = require("which-key")
+    wk.add({
+      {
+        mode = { "n", "v" },
+        { "<leader>m", group = "markdown" },
+      },
+    })
+
+
+  end,
 }
