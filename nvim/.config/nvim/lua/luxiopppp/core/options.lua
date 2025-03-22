@@ -29,7 +29,11 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
-vim.cmd([[
-  iabbrev n~ ñ
-  iabbrev N~ Ñ
-]])
+opt.spelllang = "es,en"
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function ()
+    vim.opt.spell = true
+  end,
+})

@@ -25,7 +25,9 @@ return {
     local lspkind = require("lspkind")
 
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+    -- require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_vscode").load({ path = "~/.config/nvim/snippets" })
 
     cmp.setup({
       completion = {
@@ -51,6 +53,7 @@ return {
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
+        { name = "render-markdown" },
       }),
 
             -- configure lspkind for vs-code like pictograms in completion menu

@@ -11,9 +11,9 @@ return {
       {
         mode = { "n", "v" },
         { "<leader>m", group = "markdown" },
+        { "<leader>ms", group = 'spell'},
+        { "<leader>msl", group = 'language'},
       },
     })
-
-
   end,
 }

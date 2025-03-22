@@ -20,12 +20,79 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
-keymap.set("n", "K", ":m .-2<CR>==", { desc= "Move line up" })
-keymap.set("n", "J", ":m .+1<CR>==", { desc= "Move line down" })
-keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc= "Move lines up" })
-keymap.set("v", "J", ":m '<+1<CR>gv=gv", { desc= "Move lines down" })
+keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc= "Move lines up in visual mode" })
+keymap.set("v", "J", ":m '<+1<CR>gv=gv", { desc= "Move lines down in visual mode" })
 
-keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
+keymap.set("n", "J", "mzJ`z") -- When join whith J, it keeps the cursor at the end
+
+keymap.set("i", "n~", 'ñ', { noremap = true })
+keymap.set("i", "N~", 'Ñ', { noremap = true })
+
+-- keymap.set("n", "<leader>nd", function()
+--   vim.cmd("terminal ~/.scripts/dailynote.sh")
+-- end, { desc = "New Daily Note" })
+
+keymap.set({ "n", "v", "i" }, "<M-h>", function ()
+  require("noice").cmd("all")
+end, { desc = "Noice History"})
+
+keymap.set({ "n", "v", "i" }, "<M-d>", function ()
+  require("noice").cmd("dismiss")
+end, { desc = "Dismiss Noice Message" })
+
+keymap.set("n", "<leader>wu", "viw~", { desc = "toggle word casing" })
+
+keymap.set("n", "<leader>mso", function ()
+  vim.opt_local.spell = not vim.opt_local.spell:get()
+end, { desc = "Toggle spell checker"})
+
+keymap.set("n", "<leader>mss", function ()
+  vim.cmd("normal! 1z=")
+end, { desc = "Choose 1st spelling suggest", noremap = true, silent = true })
+
+keymap.set("n", "<leader>msg", function ()
+  vim.cmd("normal! zg")
+end, { desc = "Add word to spellfile" })
+
+keymap.set("n", "<leader>msu", function ()
+  vim.cmd("normal! zug")
+end, { desc = "Remove word from spellfile" })
+
+-- keymap.set("n", "<leader>msr", function ()
+--   vim.api.nvm_feedkeys(vim.api.nvim_replace_termcodes(":spellr\n", true, false, true), "m", true)
+-- end)
+
+keymap.set("n", "<leader>msls", function ()
+  vim.opt.spelllang = "es"
+  vim.cmd("echo 'Spell language Spanish'")
+end, { desc = "Seplling language Spanish"})
+
+keymap.set("n", "<leader>mslb", function ()
+  vim.opt.spelllang = "en,es"
+  vim.cmd("echo 'Spell language Spanish and English'")
+end, { desc = "Seplling language Spanish and English"})
+
+-- If this is a bash script, make it executable, and execute it in a tmux pane on the right
+-- Using a tmux pane allows me to easily select text
+-- Had to include quotes around "%" because there are some apple dirs that contain spaces, like iCloud
+keymap.set("n", "<leader>cb", function()
+  local file = vim.fn.expand("%") -- Get the current file name
+  local first_line = vim.fn.getline(1) -- Get the first line of the file
+  if string.match(first_line, "^#!/") then -- If first line contains shebang
+    local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
+    -- Execute the script on a tmux pane on the right. On my mac I use zsh, so
+    -- running this script with bash to not execute my zshrc file after
+    -- vim.cmd("silent !tmux split-window -h -l 60 'bash -c \"" .. escaped_file .. "; exec bash\"'")
+    -- `-l 60` specifies the size of the tmux pane, in this case 60 columns
+    vim.cmd(
+      "silent !tmux split-window -h -l 60 'bash -c \""
+        .. escaped_file
+        .. "; echo; echo Press any key to exit...; read -n 1; exit\"'"
+    )
+  else
+    vim.cmd("echo 'Not a script. Shebang line not found.'")
+  end
+end, { desc = "BASH, execute file" })
 
 -- Toggle bullet point at the beginning of the current line in normal mode
 -- If in a multiline paragraph, make sure the cursor is on the line at the top
