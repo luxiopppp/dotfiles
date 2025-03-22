@@ -44,6 +44,7 @@ return {
         "query",
         "vimdoc",
         "c",
+        "latex",
       },
       incremental_selection = {
         enable = true,
