@@ -4,6 +4,7 @@ return {
   opts = function()
     local enable_conceal = false
     return {
+      -- debug = { enable = true },
       presets = { bottom_search = true },
       cmdline = {
         view = "cmdline",                 -- The kind of popup used for :
@@ -17,6 +18,16 @@ return {
           input = { conceal = enable_conceal },
         }
       },
+      -- routes = {
+      --   {
+      --     filter = { event = "msg_show", kind = "", find = "^Change .+ to", },
+      --     opts = { skip = true },
+      --   },
+      --   {
+      --     filter = { event = "cmdline", find = "^Change .+ to", },
+      --     opts = { skip = true },
+      --   },
+      -- },
 
 
       -- Disable every other noice feature
