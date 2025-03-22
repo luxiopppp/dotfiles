@@ -31,8 +31,8 @@ return {
       -- but I want the name of the dir to end with `-img`
       dir_path = function()
         -- return vim.fn.expand("%:t:r") .. "-img"
-        return vim.fn.isdirectory("./attachments") == 1 and "./attachments" or vim.fn.expand("%:t:r") .. "-img"
-        -- return "./attachments"
+        -- return vim.fn.isdirectory("./attachments") == 0 and "./attachments" or vim.fn.expand("%:t:r") .. "-img"
+        return "./attachments"
       end,
 
       -- If you want to get prompted for the filename when pasting an image
