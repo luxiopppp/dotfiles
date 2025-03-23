@@ -37,3 +37,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.spell = true
   end,
 })
+
+opt.foldcolumn = '1'
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
