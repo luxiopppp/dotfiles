@@ -1,0 +1,7 @@
+{
+  "bold": {
+    "body": "**$1**$0",
+    "prefix": "bf",
+    "description": "Bold text"
+  }
+}

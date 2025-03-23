@@ -1,0 +1,1 @@
+{"name":"personal-snippets","contributes":{"snippets":[{"language":"markdown","path":".\/markdown.json"},{"language":"latex","path":".\/latex.json"},{"language":["lua"],"path":".\/lua.json"}]}}

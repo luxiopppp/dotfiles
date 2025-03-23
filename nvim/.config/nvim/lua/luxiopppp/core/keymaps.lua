@@ -28,9 +28,13 @@ keymap.set("n", "J", "mzJ`z") -- When join whith J, it keeps the cursor at the e
 keymap.set("i", "n~", 'ñ', { noremap = true })
 keymap.set("i", "N~", 'Ñ', { noremap = true })
 
--- keymap.set("n", "<leader>nd", function()
---   vim.cmd("terminal ~/.scripts/dailynote.sh")
--- end, { desc = "New Daily Note" })
+keymap.set("n", "<leader>sne", function ()
+  require("scissors").editSnippet()
+end, { desc = "Edit Snippet"})
+
+keymap.set({ "n", "x" }, "<leader>sna", function ()
+  require("scissors").addNewSnippet()
+end, { desc = "Add new snippet"})
 
 keymap.set({ "n", "v", "i" }, "<M-h>", function ()
   require("noice").cmd("all")

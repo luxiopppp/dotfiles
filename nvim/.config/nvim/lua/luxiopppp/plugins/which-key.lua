@@ -13,6 +13,7 @@ return {
         { "<leader>m", group = "markdown" },
         { "<leader>ms", group = 'spell'},
         { "<leader>msl", group = 'language'},
+        { "<leader>sn", group = 'snippets'},
       },
     })
   end,
