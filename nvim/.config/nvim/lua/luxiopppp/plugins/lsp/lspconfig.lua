@@ -2,19 +2,18 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    -- { "folke/neodev.nvim", opts = {} },
   },
   config = function()
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
 
     -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
-
-    -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     local keymap = vim.keymap -- for conciseness
 
@@ -67,9 +66,6 @@ return {
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
     -- Change the Diagnostic symbols in the sign column (gutter)
     -- (not in youtube nvim video)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -83,35 +79,6 @@ return {
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
-        })
-      end,
-      -- ["svelte"] = function()
-      --   -- configure svelte server
-      --   lspconfig["svelte"].setup({
-      --     capabilities = capabilities,
-      --     on_attach = function(client, bufnr)
-      --       vim.api.nvim_create_autocmd("BufWritePost", {
-      --         pattern = { "*.js", "*.ts" },
-      --         callback = function(ctx)
-      --           -- Here use ctx.match instead of ctx.file
-      --           client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-      --         end,
-      --       })
-      --     end,
-      --   })
-      -- end,
-      ["graphql"] = function()
-        -- configure graphql language server
-        lspconfig["graphql"].setup({
-          capabilities = capabilities,
-          filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-        })
-      end,
-      ["emmet_ls"] = function()
-        -- configure emmet language server
-        lspconfig["emmet_ls"].setup({
-          capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
         })
       end,
       ["lua_ls"] = function()
@@ -138,9 +105,4 @@ return {
       end,
     })
   end,
-  -- vim.diagnostic.config({
-  --   virtual_text = {
-  --     severity = { min = vim.diagnostic.severity.WARN }, -- Evita diagnósticos innecesarios
-  --   },
-  -- })
 }
