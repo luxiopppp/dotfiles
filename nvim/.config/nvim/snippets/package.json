@@ -1,1 +1,1 @@
-{"name":"personal-snippets","contributes":{"snippets":[{"language":"markdown","path":".\/markdown.json"},{"language":"latex","path":".\/latex.json"},{"language":["lua"],"path":".\/lua.json"}]}}
+{"name":"personal-snippets","contributes":{"snippets":[{"path":".\/markdown.json","language":"markdown"},{"path":".\/latex.json","language":"latex"},{"path":".\/lua.json","language":["lua"]},{"path":".\/sh.json","language":["sh"]}]}}
