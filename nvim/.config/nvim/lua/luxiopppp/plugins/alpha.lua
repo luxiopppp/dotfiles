@@ -26,7 +26,7 @@ return {
       dashboard.button("t", "  Find text", "<cmd>Telescope live_grep<CR>"),
       dashboard.button("r", "  Recent used files", "<cmd>Telescope oldfiles<CR>"),
       dashboard.button("s", "󰁯  Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
-	    dashboard.button("c", "  Configuration", "<cmd>NvimTreeOpen C:\\/Users\\/lucio\\/AppData\\/Local\\/nvim\\/<CR>"),
+	    -- dashboard.button("c", "  Configuration", "<cmd>NvimTreeOpen C:\\/Users\\/lucio\\/AppData\\/Local\\/nvim\\/<CR>"),
       dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
       dashboard.button("u", "󱐥  Update plugins", "<cmd>Lazy sync<CR>"),
       dashboard.button("m", "󱌣  Mason", "<cmd>Mason<CR>"),
