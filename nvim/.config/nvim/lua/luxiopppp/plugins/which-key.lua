@@ -14,6 +14,7 @@ return {
         { "<leader>ms", group = 'spell'},
         { "<leader>msl", group = 'language'},
         { "<leader>sn", group = 'snippets'},
+        { "<leader>i", group = 'images'},
       },
     })
   end,

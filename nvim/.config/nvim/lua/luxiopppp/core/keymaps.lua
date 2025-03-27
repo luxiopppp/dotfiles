@@ -28,6 +28,25 @@ keymap.set("n", "J", "mzJ`z") -- When join whith J, it keeps the cursor at the e
 keymap.set("i", "n~", 'ñ', { noremap = true })
 keymap.set("i", "N~", 'Ñ', { noremap = true })
 
+keymap.set("n", "<leader>ik", function ()
+  vim.fn.system("$HOME/.scripts/imagefromkde.sh")
+end, { desc = "Copy last image from KDE Connect" })
+keymap.set("n", "<leader>if", function ()
+  local actions = require("telescope.actions")
+
+  require("telescope.builtin").find_files({
+    cwd = "~/Documents/kde_connect/",
+    attach_mappings = function (_, map)
+      map("i", "<CR>", function (prompt_buffer)
+        local selection = require("telescope.actions.state").get_selected_entry()
+        actions.close(prompt_buffer)
+        vim.fn.system("$HOME/.scripts/imagefromkde.sh", selection.path)
+      end)
+      return true
+    end
+  })
+end, { desc = "Copy image from Telescope" })
+
 keymap.set("n", "<leader>sne", function ()
   require("scissors").editSnippet()
 end, { desc = "Edit Snippet"})
