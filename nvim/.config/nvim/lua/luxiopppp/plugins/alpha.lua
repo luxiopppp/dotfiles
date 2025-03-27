@@ -21,12 +21,12 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button("n", "  New file", "<cmd>ene<CR>"),
-      dashboard.button("e", "  Open file explorer", "<cmd>NvimTreeOpen .<CR>"),
-      dashboard.button("f", "󰱼  Find file", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("t", "  Find text", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("r", "  Recent used files", "<cmd>Telescope oldfiles<CR>"),
+      dashboard.button("e", "  Open file explorer", function() Snacks.picker.explorer() end),
+      dashboard.button("f", "󰱼  Find file", function() Snacks.picker.smart() end),
+      dashboard.button("t", "  Find text", function() Snacks.picker.grep() end),
+      dashboard.button("r", "  Recent used files", function() Snacks.picker.recent() end),
       dashboard.button("s", "󰁯  Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
-	    -- dashboard.button("c", "  Configuration", "<cmd>NvimTreeOpen C:\\/Users\\/lucio\\/AppData\\/Local\\/nvim\\/<CR>"),
+	    dashboard.button("c", "  Configuration", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end),
       dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
       dashboard.button("u", "󱐥  Update plugins", "<cmd>Lazy sync<CR>"),
       dashboard.button("m", "󱌣  Mason", "<cmd>Mason<CR>"),
