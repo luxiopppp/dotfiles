@@ -28,7 +28,7 @@ return {
       options = {
         theme = custom_gruvbox,
         section_separators = '',
-        component_separators = '',
+        component_separators = '|',
         disabled_filetypes = { "NvimTree", }
       },
       sections = {
@@ -53,7 +53,9 @@ return {
             color = { fg = "#fe8019" },
           },
         },
-        lualine_y = {},
+        lualine_y = {
+          -- { function () return vim.fn.getfperm(vim.api.nvim_buf_get_name(0)) end },
+        },
         lualine_z = {
           { "location", padding = { left = 0, right = 1 } },
         },
