@@ -9,10 +9,10 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment num"})
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement num"})
 
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+-- keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
+-- keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
+-- keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+-- keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
@@ -76,18 +76,24 @@ keymap.set("n", "<leader>mslb", function ()
   vim.cmd("echo 'Spell language Spanish and English'")
 end, { desc = "Seplling language Spanish and English"})
 
--- If this is a bash script, make it executable, and execute it in a tmux pane on the right
--- Using a tmux pane allows me to easily select text
--- Had to include quotes around "%" because there are some apple dirs that contain spaces, like iCloud
+keymap.set('n', '<leader>ml', function ()
+  local line = vim.api.nvim_get_current_line()
+  if line:match("^%- %[%s?%] ") then
+    line = line:gsub("^%- %[%] ", "", 1)
+  else
+    line = "- [ ] " .. line
+  end
+
+  vim.api.nvim_set_current_line(line)
+end, { remap = true, silent = false, desc = 'Toggle markdown list item on line' })
+
+keymap.set("n", "<leader>mp", ":MarkdownPreview<CR>", { desc = 'Toggle markdown preview (on browser)' })
+
 keymap.set("n", "<leader>cb", function()
   local file = vim.fn.expand("%") -- Get the current file name
   local first_line = vim.fn.getline(1) -- Get the first line of the file
   if string.match(first_line, "^#!/") then -- If first line contains shebang
     local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
-    -- Execute the script on a tmux pane on the right. On my mac I use zsh, so
-    -- running this script with bash to not execute my zshrc file after
-    -- vim.cmd("silent !tmux split-window -h -l 60 'bash -c \"" .. escaped_file .. "; exec bash\"'")
-    -- `-l 60` specifies the size of the tmux pane, in this case 60 columns
     vim.cmd(
       "silent !tmux split-window -h -l 60 'bash -c \""
         .. escaped_file
@@ -98,9 +104,6 @@ keymap.set("n", "<leader>cb", function()
   end
 end, { desc = "BASH, execute file" })
 
--- Toggle bullet point at the beginning of the current line in normal mode
--- If in a multiline paragraph, make sure the cursor is on the line at the top
--- "d" is for "dash" lamw25wmal
 vim.keymap.set("n", "<leader>md", function()
   -- Get the current cursor position
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
