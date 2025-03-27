@@ -15,8 +15,8 @@ case "$CHOSEN" in
 			reboot
 		fi
 		;;
-	"Suspend") systemctl suspend ;;
+  "Suspend") $(sh /home/luxiopppp/.config/i3/scripts/lock.sh && systemctl suspend) ;;
 	"Log Out") i3-msg exit ;;
-	"Lock") betterlockscreen -l blur;;
+  "Lock") $(sh /home/luxiopppp/.config/i3/scripts/lock.sh) ;;
 	*) exit 1 ;;
 esac
